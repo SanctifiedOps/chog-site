@@ -15,7 +15,7 @@
   --monad-secondary-3: #f9b1f4; /* pink */
   --monad-secondary-4: #ffa63a; /* orange */
 
-  /* Aliases used throughout your styles */
+  /* Aliases */
   --monad-purple: var(--monad-primary-1);
   --monad-purple-soft: #836ef9;
   --monad-bg-deep: var(--monad-primary-3);
@@ -33,7 +33,7 @@
   box-sizing: border-box;
 }
 
-/* GLOBAL BACKGROUND */
+/* GLOBAL BACKGROUND / PAGE ROOT */
 
 html,
 body,
@@ -52,14 +52,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Mobile background: repeat stripes down the page */
 @media (max-width: 900px) {
   html {
     background-image: url("/chog-bg-mobile.png");
     background-position: center top;
-    background-size: 100% auto;   /* full width */
-    background-repeat: repeat-y;  /* repeat vertically down the page */
+    background-size: 100% auto;
+    background-repeat: repeat-y;
     background-attachment: scroll;
-    background-color: #05030a;    /* safety fill */
+    background-color: #05030a;
   }
 }
 
@@ -69,6 +70,17 @@ body {
   align-items: flex-start;
   background: transparent;
   color: var(--monad-offwhite);
+}
+
+/* Headline typography – prefer Britti Sans if present, then Inter */
+h1,
+h2,
+h3,
+.hero h1,
+.content-card h2 {
+  font-family: "Britti Sans", "Inter", system-ui, -apple-system,
+    BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  letter-spacing: 0.01em;
 }
 
 /* ENSURE WRAPPERS ARE TRANSPARENT */
@@ -91,6 +103,7 @@ body {
 .center-box {
   width: 100%;
   max-width: 960px;
+  margin: 0 auto;
   padding: 1.5rem 1.5rem 4rem;
 }
 
@@ -680,27 +693,10 @@ body {
   }
 }
 
-/* OVERRIDES */
-
-.eyebrow {
-  color: #FFAE45 !important;
-}
-
-.hero h1 {
-  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45),
-               0 0 12px rgba(131, 110, 249, 0.35);
-}
-
-/* RESPONSIVE – MOBILE LAYOUT (UNIFIED WIDTHS) */
+/* RESPONSIVE – MOBILE LAYOUT */
 
 @media (max-width: 900px) {
-  /* stop any sideways scroll */
-  html,
-  body {
-    overflow-x: hidden;
-  }
-
-  /* hide desktop nav, show hamburger */
+  /* Nav behaviour */
   .desktop-nav {
     display: none;
   }
@@ -735,23 +731,18 @@ body {
     opacity: 0.9;
   }
 
-  /* single safe area for all content */
+  /* One central safe area */
   .center-box {
     padding: 1.5rem 1rem 3rem;
   }
 
-  /* sections themselves add no extra horizontal padding */
+  /* Sections rely on center-box padding only */
+  .hero,
   .content-section,
-  .links-section,
   .gallery,
-  .footer,
-  .monad-logo-strip,
-  .monad-logo-wrapper {
+  .links-section {
     padding-left: 0;
     padding-right: 0;
-    margin-left: 0;
-    margin-right: 0;
-    max-width: 100%;
   }
 
   .hero {
@@ -763,12 +754,22 @@ body {
     height: 260px;
   }
 
-  /* unified width: cards, grids, items all fill the safe area */
+  /* All main panels / grids fill the safe area */
   .content-card,
   .link-grid,
   .gallery-grid {
     width: 100%;
     max-width: 100%;
+  }
+
+  /* Single-column layout for links and gallery */
+  .link-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .link-card,
@@ -777,17 +778,28 @@ body {
     max-width: 100%;
   }
 
-  /* single-column grids for memes + links */
-  .gallery-grid,
-  .link-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  /* make sure images never overflow */
+  /* Make sure no media overflows */
   img,
   video {
     max-width: 100%;
     height: auto;
   }
+}
+
+/* EXTRA NARROW PHONES */
+@media (max-width: 500px) {
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+}
+
+/* OVERRIDES */
+
+.eyebrow {
+  color: #FFAE45 !important;
+}
+
+.hero h1 {
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45),
+               0 0 12px rgba(131, 110, 249, 0.35);
 }
