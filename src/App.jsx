@@ -191,7 +191,7 @@ export default function App() {
               </p>
             </ContentCard>
 
-            <ContentCard title="Chog in the Monad ecosystem" id="ecosystem">
+            <ContentCard title="Monad ecosystem" id="ecosystem">
               <p>
                 Within Monad, Chog sits at the crossroads of culture and
                 infrastructure. He is the friendly skin over serious tech:
