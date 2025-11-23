@@ -724,16 +724,16 @@ body {
   }
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE – MOBILE LAYOUT */
 
 @media (max-width: 900px) {
-  /* hide desktop nav, show hamburger */
+  /* Nav behaviour */
   .desktop-nav {
     display: none;
   }
 
   .nav {
-    padding-inline: 1.1rem;
+    padding-inline: 1rem;
   }
 
   .nav-toggle {
@@ -762,8 +762,18 @@ body {
     opacity: 0.9;
   }
 
+  /* One central safe area */
   .center-box {
-    padding-inline: 1.1rem;
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  /* Sections rely on center-box padding only */
+  .hero,
+  .content-section,
+  .gallery,
+  .links-section {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .hero {
@@ -775,14 +785,42 @@ body {
     height: 260px;
   }
 
+  /* All main panels / grids fill the safe area */
+  .content-card,
+  .link-grid,
   .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Single-column layout for links and gallery */
+  .link-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .link-card,
+  .gallery-item {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Make sure no media overflows */
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
   }
 }
 
+/* EXTRA NARROW PHONES */
 @media (max-width: 500px) {
-  .gallery-grid {
-    grid-template-columns: 1fr;
+  .hero h1 {
+    font-size: 2.4rem;
   }
 }
 
