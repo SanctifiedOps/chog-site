@@ -31,7 +31,7 @@ const App = ()=> {
             </a>
 
             <a
-              href="https://x.com/chog"
+              href="https://x.com/i/communities/1992325121328173450g"
               target="_blank"
               rel="noopener noreferrer"
               className="nav-pill"
