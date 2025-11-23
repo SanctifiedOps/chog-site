@@ -145,7 +145,7 @@ const App = ()=> {
                 className={`ca-copy-btn ${copied ? "copied" : ""}`}
                 onClick={copyCA}
               >
-                {copied ? "Copied!" : "Copy CA: FfjR46Hmq6Bz5Hni4gAFymWwFBNKD1meBdWgLvAjpump"}
+                {copied ? "Copied!" : "Copy CA"}
               </button>
             </div>
 

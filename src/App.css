@@ -229,7 +229,7 @@ body {
 /* EYEBROW / SUBTITLE ABOVE H1 */
 .eyebrow {
   font-family: "Roboto Mono", monospace;
-  font-size: 1rem;                  /* bigger */
+  font-size: 1.75rem;                  /* bigger */
   font-weight: 600;                 /* bolder */
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -833,4 +833,38 @@ body {
 .hero h1 {
   text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45),
                0 0 12px rgba(131, 110, 249, 0.35);
+}
+
+/* FIX: Restore mobile safe-area layout */
+@media (max-width: 900px) {
+
+  /* Force all major sections to fit inside center-box padding */
+  .hero-inner,
+  .content-section,
+  .content-card,
+  .gallery,
+  .gallery-grid,
+  .links-section,
+  .link-grid,
+  .footer {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Uniform horizontal spacing from screen edge */
+  .shell,
+  .center-box {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Prevent ANY child element from overflowing */
+  .shell * {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
 }
