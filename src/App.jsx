@@ -157,6 +157,20 @@ const App = ()=> {
               />
             </div>
           </div>
+
+{/* VIDEO SECTION */}
+<div className="chog-video-wrapper">
+  <video
+    className="chog-video"
+    src="/chog-video.mp4"
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+</div>
+
+
         </main>
 
         {/* CONTENT SECTIONS */}
