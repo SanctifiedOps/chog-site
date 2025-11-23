@@ -757,3 +757,45 @@ body {
   text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45),
                0 0 12px rgba(131, 110, 249, 0.35);
 }
+
+/* MOBILE WIDTH FIXES */
+@media (max-width: 900px) {
+
+  /* Global container control */
+  .center-box,
+  .hero-inner,
+  .hero-text,
+  .content,
+  .content-section,
+  .gallery,
+  .links-section {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Make content cards fit properly */
+  .content-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 22px 20px 26px !important;
+  }
+
+  /* Fix link boxes overflowing */
+  .link-grid {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+  }
+
+  .link-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Fix gallery width */
+  .gallery-item {
+    max-width: 100% !important;
+  }
+}
