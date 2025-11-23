@@ -817,6 +817,18 @@ body {
   }
 }
 
+@media (max-width: 900px) {
+  .content-card {
+    padding: 24px 24px 28px !important;  /* more breathing room */
+  }
+
+  .content-card.open .content-body {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
+
+
 /* EXTRA NARROW PHONES */
 @media (max-width: 500px) {
   .hero h1 {
