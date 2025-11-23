@@ -799,88 +799,44 @@ body {
     max-width: 100% !important;
   }
 }
-/* UNIVERSAL MOBILE SAFE AREA */
+/* MOBILE LAYOUT – unified widths */
 @media (max-width: 900px) {
+  /* Single safe area wrapper */
+  .center-box {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 
-  /* Wrap all site content inside a safe margin */
-  .shell,
-  .center-box,
-  .hero-inner,
-  .hero-text,
-  .content,
+  /* Sections themselves should not add extra side padding */
   .content-section,
   .links-section,
   .gallery {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-    max-width: calc(100% - 32px) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    box-sizing: border-box !important;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  /* Content cards must shrink properly */
-  .content-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-
-  /* Fix link cards overflowing */
-  .link-grid {
-    width: 100% !important;
-    grid-template-columns: 1fr !important;
-  }
-
-  .link-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-
-  /* Keep gallery clean */
+  /* All panels / grids fill the safe area */
+  .content-card,
+  .link-grid,
   .gallery-grid {
-    width: 100% !important;
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
+    width: 100%;
+    max-width: 100%;
   }
 
+  /* Individual cards / items also respect that width */
+  .link-card,
   .gallery-item {
-    width: 100% !important;
-    max-width: 100% !important;
+    width: 100%;
+    max-width: 100%;
   }
 
-  /* Prevent any rogue full-width elements */
+  /* Make sure images never overflow */
   img,
   video {
-    max-width: 100% !important;
+    max-width: 100%;
+    height: auto;
   }
 }
-/* MOBILE UNIFORM CONTENT WIDTH */
-@media (max-width: 900px) {
 
-  /* Applies to ALL rounded content panels */
-  .content-box,
-  .ecosystem-section .info-card,
-  .what-is-chog-section .info-card,
-  .lore-section .info-card {
-    max-width: 92%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* Ensure section titles line up too */
-  .section-title {
-    padding-left: 4%;
-    padding-right: 4%;
-  }
-
-  /* Ensure MONAD banner also aligns */
-  .monad-section {
-    max-width: 92%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
