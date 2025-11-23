@@ -35,27 +35,16 @@
 
 /* GLOBAL BACKGROUND */
 
-html,
-body,
-#root {
-  height: 100%;
-  margin: 0;
+html {
+  background: url("/chog-bg.png") center top / cover no-repeat fixed;
 }
 
-html {
-  /* NEW: global radial gradient instead of PNG */
-  background: radial-gradient(
-    circle at center,
-    #3c1a7a 0%,
-    #251046 45%,
-    #0d031c 75%,
-    #000000 100%
-  );
-  background-attachment: scroll;
-  background-size: cover;
-  background-position: center;
-  scroll-behavior: smooth;
+@media (max-width: 900px) {
+  html {
+    background: url("/chog-bg-mobile.png") center top / cover no-repeat fixed;
+  }
 }
+
 
 body {
   display: flex;
