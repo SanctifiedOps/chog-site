@@ -862,9 +862,11 @@ body {
     padding-right: 1rem !important;
   }
 
-  /* Prevent ANY child element from overflowing */
-  .shell * {
-    max-width: 100%;
+  /* Prevent sideways scrolling without clipping glows */
+  html,
+  body,
+  .shell {
     overflow-x: hidden;
   }
 }
+
