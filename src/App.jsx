@@ -1,366 +1,252 @@
-import React, {useState} from "react";
-import "./App.css";
+import {useState} from "react";
+import "./app.css";
 
-const App = ()=> {
-  const [openCard,setOpenCard] = useState("what");
+const CONTRACT_ADDRESS = "FfjR46Hmq6Bz5Hni4gAFymWwFBNKD1meBdWgLvAjpump";
+
+const galleryImages = [
+  "/gallery/chog-1.png",
+  "/gallery/chog-2.png",
+  "/gallery/chog-3.png",
+  "/gallery/chog-4.png",
+  "/gallery/chog-5.png",
+  "/gallery/chog-6.png",
+];
+
+const links = [
+  {
+    title: "Chog Community on X",
+    url: "https://x.com",
+    description: "Updates, discussions and community-driven visuals.",
+  },
+  {
+    title: "Chog Dexscreener",
+    url: "https://dexscreener.com",
+    description: "Official announcements, assets and project details.",
+  },
+  {
+    title: "Monad",
+    url: "https://monad.xyz",
+    description:
+      "Technical documentation, ecosystem resources and performance benchmarks.",
+  },
+];
+
+function ContentCard({title,children}) {
+  const [open,setOpen] = useState(false);
+
+  return (
+    <section className="content-section" id={title.toLowerCase().replace(/\s+/g,"-")}>
+      <article
+        className={`content-card ${open ? "open" : ""}`}
+        onClick={() => setOpen(!open)}
+      >
+        <h2>{title}</h2>
+        <div className="content-body">
+          {children}
+        </div>
+      </article>
+    </section>
+  );
+}
+
+function LinkCard({title,url,description}) {
+  return (
+    <a className="link-card" href={url} target="_blank" rel="noreferrer">
+      <strong>{title}</strong>
+      <span className="link-sub">{description}</span>
+    </a>
+  );
+}
+
+export default function App() {
   const [navOpen,setNavOpen] = useState(false);
+  const [hasCopied,setHasCopied] = useState(false);
 
-  const handleCardClick = (id)=> {
-    setOpenCard(prev => (prev === id ? null : id));
+  const handleCopyCA = () => {
+    navigator.clipboard.writeText(CONTRACT_ADDRESS).then(() => {
+      setHasCopied(true);
+      setTimeout(() => setHasCopied(false),1500);
+    });
   };
 
   return (
     <div className="shell">
       <div className="center-box">
         {/* NAVBAR */}
-        <nav className="nav">
+        <header className="nav">
           <div className="nav-left">
-            <img
-              src="/Horizontal_Logo_white.png"
-              alt="Chog logo"
-              className="nav-logo"
-            />
+            <img src="/chog-favicon.webp" alt="Chog" className="nav-logo" />
+            <div className="nav-pill">CHOG</div>
           </div>
 
-          {/* DESKTOP NAV */}
-          <div className="desktop-nav">
-            <a href="#about">About</a>
-            <a href="#lore">Lore</a>
-            <a
-              href="https://discord.gg/chog"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Discord
-            </a>
-            <a
-              href="https://x.com/i/communities/1992325121328173450"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-pill"
-            >
-              Join X community
-            </a>
-          </div>
+          <nav className="desktop-nav">
+            <a href="#about">Lore</a>
+            <a href="#ecosystem">Ecosystem</a>
+            <a href="#memes">Memes</a>
+            <a href="#links">Links</a>
+          </nav>
 
-          {/* MOBILE HAMBURGER */}
           <button
-            type="button"
             className="nav-toggle"
-            onClick={()=> setNavOpen(prev => !prev)}
-            aria-label="Toggle navigation"
+            type="button"
+            onClick={() => setNavOpen(!navOpen)}
           >
             <span />
-            <span />
           </button>
-        </nav>
+        </header>
 
-        {/* MOBILE MENU */}
         {navOpen && (
-          <div className="nav-mobile">
-            <a href="#about" onClick={()=> setNavOpen(false)}>
-              About
-            </a>
-            <a href="#lore" onClick={()=> setNavOpen(false)}>
-              Lore
-            </a>
-            <a
-              href="https://discord.gg/chog"
-              target="_blank"
-              rel="noreferrer"
-              onClick={()=> setNavOpen(false)}
-            >
-              Discord
-            </a>
-            <a
-              href="https://x.com/i/communities/1992325121328173450"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={()=> setNavOpen(false)}
-            >
-              X community
-            </a>
-          </div>
+          <nav className="nav-mobile">
+            <a href="#about" onClick={() => setNavOpen(false)}>Lore</a>
+            <a href="#ecosystem" onClick={() => setNavOpen(false)}>Ecosystem</a>
+            <a href="#memes" onClick={() => setNavOpen(false)}>Memes</a>
+            <a href="#links" onClick={() => setNavOpen(false)}>Links</a>
+          </nav>
         )}
 
         {/* HERO */}
-        <main className="hero">
-          <div className="hero-inner">
-            <p className="eyebrow">The mascot of Monad</p>
+        <main>
+          <section className="hero">
+            <div className="hero-inner">
+              <p className="eyebrow">The mascot of Monad</p>
+              <h1>In Chog We Trust</h1>
 
-            <h1>In Chog We Trust</h1>
-
-            {/* IMAGE BOX */}
-            <div className="hero-art">
-              <div className="hero-orbit">
-                <div className="hero-card">
-                  <img src="/chog-logo.jpg" alt="Chog" />
-                </div>
-                <div className="hero-tag">
-                  <span>Live on Solana</span>
+              <div className="hero-art">
+                <div className="hero-orbit">
+                  <div className="hero-card">
+                    <img src="/chog-hero.png" alt="Chog" />
+                  </div>
+                  <div className="hero-tag">Live on Solana</div>
                 </div>
               </div>
+
+              <p className="hero-body">
+                Chog is the cultural icon of Monad, powered by 56,000 Discord
+                members and a wider ecosystem of 1.3M followers. Our Solana
+                expansion brings that momentum to the fastest chain while
+                honouring the community that built him.
+              </p>
+
+              <div className="hero-actions">
+                <a
+                  href="https://x.com"
+                  className="btn primary-btn"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  X Community
+                </a>
+                <a
+                  href="https://monad.xyz"
+                  className="btn primary-btn"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Explore Monad
+                </a>
+                <a
+                  href="#buy"
+                  className="btn primary-btn"
+                >
+                  Buy Now
+                </a>
+              </div>
+
+              {/* COPY CONTRACT ADDRESS PILL */}
+              <div className="ca-copy-wrapper">
+                <button
+                  type="button"
+                  className={`ca-copy-btn ${hasCopied ? "copied" : ""}`}
+                  onClick={handleCopyCA}
+                >
+                  {hasCopied
+                    ? "Copied!"
+                    : `Copy CA: ${CONTRACT_ADDRESS}`}
+                </button>
+              </div>
             </div>
+          </section>
 
-            <p className="hero-body">
-              Chog is the cultural icon of Monad, powered by 56,000 Discord members
-              and a wider ecosystem of 1.3M followers. Our Solana expansion
-              brings that momentum to the fastest chain while honouring the
-              community that built him.
-            </p>
-
-            <div className="hero-actions">
-              <a
-                href="https://x.com/i/communities/1992325121328173450"
-                className="btn primary-btn"
-                target="_blank"
-                rel="noreferrer"
-              >
-                X Community
-              </a>
-
-              <a
-                href="https://www.monad.xyz/"
-                className="btn primary-btn"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Explore Monad
-              </a>
-
-              <a
-                href="https://jup.ag/?sell=So11111111111111111111111111111111111111112&buy=FfjR46Hmq6Bz5Hni4gAFymWwFBNKD1meBdWgLvAjpump"
-                className="btn primary-btn"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Buy Now
-              </a>
-            </div>
-
-            <p className="hero-caption">
-              FfjR46Hmq6Bz5Hni4gAFymWwFBNKD1meBdWgLvAjpump
-            </p>
-
-            <div className="monad-logo-wrapper">
-              <img
-                src="/monadlogo.png"
-                alt="Monad Logo"
-                className="monad-logo"
-              />
-            </div>
+          {/* MONAD LOGO STRIP */}
+          <div className="monad-logo-strip">
+            <img
+              src="/monad-logo.svg"
+              alt="Monad"
+              className="monad-logo"
+            />
           </div>
+
+          {/* CONTENT SECTIONS */}
+          <section className="content" id="about">
+            <ContentCard title="Chog Lore">
+              <p>
+                Chog began as a simple, charming character inside the Monad
+                community. Over time the memes, the art and the in-jokes turned
+                into something heavier, a genuine mascot that people rallied
+                around.
+              </p>
+              <p>
+                The Solana expansion honours that history instead of trying to
+                overwrite it. Same soul, new chain.
+              </p>
+            </ContentCard>
+
+            <ContentCard title="Chog in the Monad ecosystem" id="ecosystem">
+              <p>
+                Within Monad, Chog sits at the crossroads of culture and
+                infrastructure. He is the friendly skin over serious tech:
+                performance benchmarks, research threads and build logs all find
+                their way into Chog-branded formats.
+              </p>
+              <p>
+                The goal is simple: lower the barrier to caring about deep tech
+                by wrapping it in a character people actually like.
+              </p>
+            </ContentCard>
+
+            <ContentCard title="What is Chog?">
+              <p>
+                Chog is a community-driven mascot, not a promise of returns. Do
+                your own research, stay curious and never risk what you cannot
+                afford to lose.
+              </p>
+            </ContentCard>
+          </section>
+
+          {/* MEME GALLERY */}
+          <section className="gallery" id="memes">
+            <h2>Chog Community Memes</h2>
+            <div className="gallery-grid">
+              {galleryImages.map((src,index) => (
+                <div className="gallery-item" key={index}>
+                  <img src={src} alt={`Chog meme ${index + 1}`} />
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* LINKS */}
+          <section className="links-section" id="links">
+            <h2>Links</h2>
+            <div className="link-grid">
+              {links.map(link => (
+                <LinkCard
+                  key={link.title}
+                  title={link.title}
+                  url={link.url}
+                  description={link.description}
+                />
+              ))}
+            </div>
+          </section>
+
+          {/* FOOTER */}
+          <footer className="footer">
+            Chog is a community-driven mascot inspired by the Monad world.
+            Stay curious, stay informed, and always do your own research.
+          </footer>
         </main>
-
-        {/* CONTENT SECTIONS */}
-        <section className="content" id="about">
-          {/* WHAT IS CHOG? */}
-          <div className="content-section">
-            <div
-              className={`content-card ${openCard === "what" ? "open" : ""}`}
-              onClick={()=> handleCardClick("what")}
-            >
-              <h2>What is Chog?</h2>
-
-              {openCard === "what" && (
-                <div className="content-body">
-                  <p>
-                    Chog is the official mascot of Monad and one of the most
-                    recognisable characters in the L1 ecosystem today. Born from
-                    a simple, charming character design, Chog quickly became
-                    more than a profile picture. He became a cultural marker for
-                    the Monad community: playful, iconic and instantly
-                    memorable.
-                  </p>
-                  <p>
-                    The Chog NFT community has grown into one of the largest
-                    art-driven groups in crypto, with over{" "}
-                    <strong>56,000 members in Discord</strong>. Artists,
-                    collectors and builders all contribute to what Chog
-                    represents. He is not just a mascot, he is the face of a
-                    movement that values creativity, humour and community-driven
-                    energy.
-                  </p>
-                  <p>
-                    Our Solana project pays respect to this legacy. We honour
-                    the art, the culture and the people who built the Chog
-                    identity long before any token ever existed.
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* CHOG LORE */}
-          <div className="content-section" id="lore">
-            <div
-              className={`content-card ${openCard === "lore" ? "open" : ""}`}
-              onClick={()=> handleCardClick("lore")}
-            >
-              <h2>Chog Lore</h2>
-
-              {openCard === "lore" && (
-                <div className="content-body">
-                  <p>
-                    Chog does not have a strict, written storyline. His lore
-                    lives in the community. Every emoji, every meme and every
-                    new piece of artwork adds another layer to who Chog is. That
-                    is why he feels alive, he evolves as the community evolves.
-                  </p>
-                  <p>
-                    The Chog NFT Discord is one of the strongest culture hubs in
-                    the space. Thousands of holders and artists contribute
-                    daily, creating new visuals, new jokes and new
-                    interpretations that shape the personality of the mascot
-                    representing the Monad ecosystem.
-                  </p>
-                  <p>
-                    Our Solana memecoin is built as an extension of that lore.
-                    It is a <strong>tribute project, not a replacement</strong>,
-                    celebrating the art, the humour and the spirit that Chog
-                    represents while introducing the character to the speed and
-                    culture of Solana.
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* CHOG IN THE MONAD ECOSYSTEM */}
-          <div className="content-section" id="usage">
-            <div
-              className={`content-card ${
-                openCard === "ecosystem" ? "open" : ""
-              }`}
-              onClick={()=> handleCardClick("ecosystem")}
-            >
-              <h2>Monad Ecosystem</h2>
-
-              {openCard === "ecosystem" && (
-                <div className="content-body">
-                  <p>
-                    Chog is more than a mascot. He has become the unofficial
-                    greeter for anyone entering the Monad world. With Monad’s
-                    upcoming mainnet expansion, a rapidly growing ecosystem and
-                    over <strong>1.3 million followers on X</strong>, Chog sits
-                    at the centre of a wave that is only getting bigger.
-                  </p>
-                  <p>
-                    The Chog NFT community helped define the visual and cultural
-                    identity of the chain. They shaped the meme culture, the
-                    aesthetic style and the sense of belonging around Monad. As
-                    $MON launches and Monad attracts global attention, the
-                    cultural power of Chog grows alongside it.
-                  </p>
-                  <p>
-                    Our Solana memecoin taps into that momentum. It connects
-                    Solana’s fast-paced environment with the iconic mascot of
-                    Monad, bridging communities, celebrating the artists and
-                    giving the Chog identity a new home on the fastest chain in
-                    crypto.
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* GALLERY */}
-        <section className="gallery">
-          <h2>Community Memes</h2>
-          <div className="gallery-grid">
-            <div className="gallery-item">
-              <img src="/chogpic (1).jpg" alt="Chog meme 1" />
-            </div>
-            <div className="gallery-item">
-              <img src="/chogpic (1).png" alt="Chog meme 2" />
-            </div>
-            <div className="gallery-item">
-              <img src="/chogpic (2).jpg" alt="Chog meme 3" />
-            </div>
-            <div className="gallery-item">
-              <img src="/chogpic (2).png" alt="Chog meme 4" />
-            </div>
-            <div className="gallery-item">
-              <img src="/chogpic (3).jpg" alt="Chog meme 5" />
-            </div>
-            <div className="gallery-item">
-              <img src="/chogpic (3).png" alt="Chog meme 6" />
-            </div>
-            <div className="gallery-item">
-              <img src="/chogpic (4).jpg" alt="Chog meme 7" />
-            </div>
-            <div className="gallery-item">
-              <img src="/chogpic (5).jpg" alt="Chog meme 8" />
-            </div>
-            <div className="gallery-item">
-              <img src="/chogpic (6).jpg" alt="Chog meme 9" />
-            </div>
-            <div className="gallery-item">
-              <img src="/chogpic (7).jpg" alt="Chog meme 10" />
-            </div>
-            <div className="gallery-item">
-              <img src="/chogpic (8).jpg" alt="Chog meme 11" />
-            </div>
-            <div className="gallery-item">
-              <img src="/chogpic (9).jpg" alt="Chog meme 12" />
-            </div>
-          </div>
-        </section>
-
-        {/* LINKS */}
-        <section id="links" className="section links-section">
-          <h2>Links</h2>
-          <div className="link-grid">
-            <a
-              href="https://x.com/i/communities/1992325121328173450"
-              target="_blank"
-              rel="noreferrer"
-              className="link-card"
-            >
-              <span>🟣 Chog Community on X</span>
-              <span className="link-sub">
-                Updates, discussions and community-driven visuals.
-              </span>
-            </a>
-
-            <a
-              href="https://dexscreener.com/solana/86dusa7bohe8ya6bcoydmdzrb7texxmysbrtp6epw5bz"
-              target="_blank"
-              rel="noreferrer"
-              className="link-card"
-            >
-              <span>🐦 Chog Dexscreener</span>
-              <span className="link-sub">
-                Official announcements, assets and project details.
-              </span>
-            </a>
-
-            <a
-              href="https://www.monad.xyz/"
-              target="_blank"
-              rel="noreferrer"
-              className="link-card"
-            >
-              <span>💠 Monad</span>
-              <span className="link-sub">
-                Technical documentation, ecosystem resources and performance
-                benchmarks.
-              </span>
-            </a>
-          </div>
-        </section>
-
-        {/* FOOTER */}
-        <footer className="footer">
-          <p>
-            Chog is a community-driven mascot inspired by the Monad world. Stay
-            curious, stay informed, and always do your own research.
-          </p>
-        </footer>
       </div>
     </div>
   );
-};
-
-export default App;
+}
