@@ -858,3 +858,29 @@ body {
     max-width: 100% !important;
   }
 }
+/* MOBILE UNIFORM CONTENT WIDTH */
+@media (max-width: 900px) {
+
+  /* Applies to ALL rounded content panels */
+  .content-box,
+  .ecosystem-section .info-card,
+  .what-is-chog-section .info-card,
+  .lore-section .info-card {
+    max-width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Ensure section titles line up too */
+  .section-title {
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+
+  /* Ensure MONAD banner also aligns */
+  .monad-section {
+    max-width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
