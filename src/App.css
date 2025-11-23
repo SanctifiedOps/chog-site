@@ -35,16 +35,33 @@
 
 /* GLOBAL BACKGROUND */
 
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
 html {
-  background: url("/chog-bg.png") center top / cover no-repeat fixed;
+  /* Desktop background */
+  background-image: url("/chog-bg.png");
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  scroll-behavior: smooth;
 }
 
 @media (max-width: 900px) {
   html {
-    background: url("/chog-bg-mobile.png") center top / cover no-repeat fixed;
+    /* Mobile background */
+    background-image: url("/chog-bg-mobile.png");
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* <- important: no fixed on mobile */
   }
 }
-
 
 body {
   display: flex;
@@ -54,16 +71,6 @@ body {
   color: var(--monad-offwhite);
 }
 
-/* Headline typography – prefer Britti Sans if present, then Inter */
-h1,
-h2,
-h3,
-.hero h1,
-.content-card h2 {
-  font-family: "Britti Sans", "Inter", system-ui, -apple-system,
-    BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-  letter-spacing: 0.01em;
-}
 
 /* ENSURE WRAPPERS ARE TRANSPARENT */
 
