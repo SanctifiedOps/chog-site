@@ -862,6 +862,16 @@ body {
     padding-right: 1rem !important;
   }
 
+  .chog-video-wrapper {
+  margin: 24px 0 32px;
+  max-width: 100%;
+}
+
+.chog-video {
+  border-radius: 18px;
+}
+
+
   /* Prevent sideways scrolling without clipping glows */
   html,
   body,
@@ -886,4 +896,23 @@ body {
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55),
               0 0 30px rgba(131, 110, 249, 0.35);
   overflow: hidden;
+}
+
+
+.chog-video-wrapper {
+  margin: 40px auto;
+  width: 100%;
+  max-width: 720px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 40px rgba(131, 110, 249, 0.35);
+}
+
+.chog-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;   /* >>> prevents the collapsed ghost box <<< */
+  object-fit: cover;
+  border-radius: 22px;
 }
