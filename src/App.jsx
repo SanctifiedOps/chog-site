@@ -103,7 +103,7 @@ const App = ()=> {
             </div>
 
             <p className="hero-body">
-              Chog is the cultural icon of Monad, powered by 56,000 NFT holders
+              Chog is the cultural icon of Monad, powered by 56,000 Discord mem
               and a wider ecosystem of 1.3M followers. Our Solana expansion
               brings that momentum to the fastest chain while honouring the
               community that built him.

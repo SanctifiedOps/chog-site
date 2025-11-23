@@ -52,16 +52,25 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Remove background for mobile (we'll use a fixed layer instead) */
 @media (max-width: 900px) {
   html {
-    /* Mobile background */
+    background: none !important;
+  }
+
+  .mobile-bg-layer {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
     background-image: url("/chog-bg-mobile.png");
-    background-position: center top;
     background-size: cover;
+    background-position: center top;
     background-repeat: no-repeat;
-    background-attachment: scroll; /* <- important: no fixed on mobile */
+    will-change: transform;
   }
 }
+
 
 body {
   display: flex;
