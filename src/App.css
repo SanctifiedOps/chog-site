@@ -15,7 +15,7 @@
   --monad-secondary-3: #f9b1f4; /* pink */
   --monad-secondary-4: #ffa63a; /* orange */
 
-  /* Aliases */
+  /* Aliases used throughout your styles */
   --monad-purple: var(--monad-primary-1);
   --monad-purple-soft: #836ef9;
   --monad-bg-deep: var(--monad-primary-3);
@@ -33,7 +33,7 @@
   box-sizing: border-box;
 }
 
-/* GLOBAL BACKGROUND / PAGE ROOT */
+/* GLOBAL BACKGROUND */
 
 html,
 body,
@@ -52,15 +52,14 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Mobile background: repeat stripes down the page */
 @media (max-width: 900px) {
   html {
     background-image: url("/chog-bg-mobile.png");
     background-position: center top;
-    background-size: 100% auto;
-    background-repeat: repeat-y;
+    background-size: 100% auto;   /* full width */
+    background-repeat: repeat-y;  /* repeat vertically */
     background-attachment: scroll;
-    background-color: #05030a;
+    background-color: #05030a;    /* safety fill behind everything */
   }
 }
 
@@ -70,17 +69,6 @@ body {
   align-items: flex-start;
   background: transparent;
   color: var(--monad-offwhite);
-}
-
-/* Headline typography – prefer Britti Sans if present, then Inter */
-h1,
-h2,
-h3,
-.hero h1,
-.content-card h2 {
-  font-family: "Britti Sans", "Inter", system-ui, -apple-system,
-    BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-  letter-spacing: 0.01em;
 }
 
 /* ENSURE WRAPPERS ARE TRANSPARENT */
@@ -103,7 +91,6 @@ h3,
 .center-box {
   width: 100%;
   max-width: 960px;
-  margin: 0 auto;
   padding: 1.5rem 1.5rem 4rem;
 }
 
@@ -242,17 +229,20 @@ h3,
 
 .eyebrow {
   font-family: "Roboto Mono", monospace;
-  font-size: 0.8rem;
+  font-size: 0.95rem;        /* bigger */
+  font-weight: 600;          /* bolder */
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  opacity: 0.7;
-  color: #ddd7fe;
-  margin: 0;
+  letter-spacing: 0.16em;
+  opacity: 0.9;
+  color: #ffae45;
+  margin: 0 0 8px;
 }
 
 .hero h1 {
   font-size: clamp(2.8rem, 4.6vw, 3.8rem);
   margin: 0;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45),
+               0 0 12px rgba(131, 110, 249, 0.35);
 }
 
 /* CHOG IMAGE BOX UNDER TITLE */
@@ -387,6 +377,50 @@ h3,
   opacity: 0.7;
   color: #ddd7fe;
   margin: 4px 0 0;
+}
+
+/* COPY CONTRACT ADDRESS PILL */
+
+.ca-copy-wrapper {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.ca-copy-btn {
+  width: 100%;
+  max-width: 520px;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(221, 215, 254, 0.5);
+  background: rgba(0, 0, 0, 0.9);
+  color: var(--monad-offwhite);
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    border-color 0.12s ease,
+    background 0.12s ease,
+    color 0.12s ease;
+}
+
+.ca-copy-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ca-copy-btn.copied {
+  background: linear-gradient(135deg, var(--monad-pink), var(--monad-orange));
+  color: var(--monad-black);
 }
 
 /* MONAD LOGO BETWEEN HERO + CONTENT */
@@ -693,16 +727,16 @@ h3,
   }
 }
 
-/* RESPONSIVE – MOBILE LAYOUT */
+/* RESPONSIVE */
 
 @media (max-width: 900px) {
-  /* Nav behaviour */
+  /* hide desktop nav, show hamburger */
   .desktop-nav {
     display: none;
   }
 
   .nav {
-    padding-inline: 1rem;
+    padding-inline: 1.1rem;
   }
 
   .nav-toggle {
@@ -731,18 +765,8 @@ h3,
     opacity: 0.9;
   }
 
-  /* One central safe area */
   .center-box {
-    padding: 1.5rem 1rem 3rem;
-  }
-
-  /* Sections rely on center-box padding only */
-  .hero,
-  .content-section,
-  .gallery,
-  .links-section {
-    padding-left: 0;
-    padding-right: 0;
+    padding-inline: 1rem;
   }
 
   .hero {
@@ -754,17 +778,24 @@ h3,
     height: 260px;
   }
 
-  /* All main panels / grids fill the safe area */
-  .content-card,
-  .link-grid,
-  .gallery-grid {
-    width: 100%;
-    max-width: 100%;
+  .content-section {
+    padding: 0 0 8px;
   }
 
-  /* Single-column layout for links and gallery */
+  .content-card {
+    padding: 22px 20px 26px;
+  }
+
+  .links-section {
+    padding: 0;
+  }
+
   .link-grid {
     grid-template-columns: 1fr;
+  }
+
+  .gallery {
+    padding: 60px 0 60px;
   }
 
   .gallery-grid {
@@ -772,34 +803,13 @@ h3,
     gap: 24px;
   }
 
-  .link-card,
   .gallery-item {
-    width: 100%;
     max-width: 100%;
   }
 
-  /* Make sure no media overflows */
   img,
   video {
     max-width: 100%;
     height: auto;
   }
-}
-
-/* EXTRA NARROW PHONES */
-@media (max-width: 500px) {
-  .hero h1 {
-    font-size: 2.4rem;
-  }
-}
-
-/* OVERRIDES */
-
-.eyebrow {
-  color: #FFAE45 !important;
-}
-
-.hero h1 {
-  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45),
-               0 0 12px rgba(131, 110, 249, 0.35);
 }
