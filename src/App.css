@@ -57,15 +57,11 @@ html {
     background-image: url("/chog-bg-mobile.png");
     background-position: center top;
     background-size: 100% auto;   /* full width */
-    background-repeat: repeat-y;  /* 🔥 repeat vertically down the page */
+    background-repeat: repeat-y;  /* repeat vertically down the page */
     background-attachment: scroll;
-    background-color: #05030a;    /* safety fill behind everything */
+    background-color: #05030a;    /* safety fill */
   }
 }
-
-
-
-
 
 body {
   display: flex;
@@ -74,7 +70,6 @@ body {
   background: transparent;
   color: var(--monad-offwhite);
 }
-
 
 /* ENSURE WRAPPERS ARE TRANSPARENT */
 
@@ -685,16 +680,33 @@ body {
   }
 }
 
-/* RESPONSIVE */
+/* OVERRIDES */
+
+.eyebrow {
+  color: #FFAE45 !important;
+}
+
+.hero h1 {
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45),
+               0 0 12px rgba(131, 110, 249, 0.35);
+}
+
+/* RESPONSIVE – MOBILE LAYOUT (UNIFIED WIDTHS) */
 
 @media (max-width: 900px) {
+  /* stop any sideways scroll */
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
   /* hide desktop nav, show hamburger */
   .desktop-nav {
     display: none;
   }
 
   .nav {
-    padding-inline: 1.1rem;
+    padding-inline: 1rem;
   }
 
   .nav-toggle {
@@ -723,8 +735,23 @@ body {
     opacity: 0.9;
   }
 
+  /* single safe area for all content */
   .center-box {
-    padding-inline: 1.1rem;
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  /* sections themselves add no extra horizontal padding */
+  .content-section,
+  .links-section,
+  .gallery,
+  .footer,
+  .monad-logo-strip,
+  .monad-logo-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
   }
 
   .hero {
@@ -736,88 +763,7 @@ body {
     height: 260px;
   }
 
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 500px) {
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* OVERRIDES */
-
-.eyebrow {
-  color: #FFAE45 !important;
-}
-
-.hero h1 {
-  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45),
-               0 0 12px rgba(131, 110, 249, 0.35);
-}
-
-/* MOBILE WIDTH FIXES */
-@media (max-width: 900px) {
-
-  /* Global container control */
-  .center-box,
-  .hero-inner,
-  .hero-text,
-  .content,
-  .content-section,
-  .gallery,
-  .links-section {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    max-width: 100% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  /* Make content cards fit properly */
-  .content-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 22px 20px 26px !important;
-  }
-
-  /* Fix link boxes overflowing */
-  .link-grid {
-    grid-template-columns: 1fr !important;
-    width: 100% !important;
-  }
-
-  .link-card {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  /* Fix gallery width */
-  .gallery-item {
-    max-width: 100% !important;
-  }
-}
-/* MOBILE LAYOUT – unified widths */
-@media (max-width: 900px) {
-  /* Single safe area wrapper */
-  .center-box {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  /* Sections themselves should not add extra side padding */
-  .content-section,
-  .links-section,
-  .gallery {
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  /* All panels / grids fill the safe area */
+  /* unified width: cards, grids, items all fill the safe area */
   .content-card,
   .link-grid,
   .gallery-grid {
@@ -825,18 +771,23 @@ body {
     max-width: 100%;
   }
 
-  /* Individual cards / items also respect that width */
   .link-card,
   .gallery-item {
     width: 100%;
     max-width: 100%;
   }
 
-  /* Make sure images never overflow */
+  /* single-column grids for memes + links */
+  .gallery-grid,
+  .link-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* make sure images never overflow */
   img,
   video {
     max-width: 100%;
     height: auto;
   }
 }
-
