@@ -234,7 +234,7 @@ const App = ()=> {
               }`}
               onClick={()=> handleCardClick("ecosystem")}
             >
-              <h2>Chog in the Monad ecosystem</h2>
+              <h2>Monad Ecosystem</h2>
 
               {openCard === "ecosystem" && (
                 <div className="content-body">
@@ -267,7 +267,7 @@ const App = ()=> {
 
         {/* GALLERY */}
         <section className="gallery">
-          <h2>Chog Community Memes</h2>
+          <h2>Community Memes</h2>
           <div className="gallery-grid">
             <div className="gallery-item">
               <img src="/chogpic (1).jpg" alt="Chog meme 1" />
