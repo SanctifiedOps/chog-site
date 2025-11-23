@@ -52,17 +52,17 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Mobile background – fills width, scrolls, no zoomed crop */
 @media (max-width: 900px) {
   html {
     background-image: url("/chog-bg-mobile.png");
     background-position: center top;
-    background-repeat: no-repeat;
-    background-size: 100% auto;  /* full width, keep aspect */
-    background-attachment: scroll; /* avoid iOS fixed bugs */
-    background-color: #05030a;     /* fills below the image */
+    background-size: 100% auto;   /* full width */
+    background-repeat: repeat-y;  /* 🔥 repeat vertically down the page */
+    background-attachment: scroll;
+    background-color: #05030a;    /* safety fill behind everything */
   }
 }
+
 
 
 
