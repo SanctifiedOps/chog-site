@@ -52,24 +52,19 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Remove background for mobile (we'll use a fixed layer instead) */
+/* Mobile background – fills width, scrolls, no zoomed crop */
 @media (max-width: 900px) {
   html {
-    background: none !important;
-  }
-
-  .mobile-bg-layer {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
     background-image: url("/chog-bg-mobile.png");
-    background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
-    will-change: transform;
+    background-size: 100% auto;  /* full width, keep aspect */
+    background-attachment: scroll; /* avoid iOS fixed bugs */
+    background-color: #05030a;     /* fills below the image */
   }
 }
+
+
 
 
 body {
